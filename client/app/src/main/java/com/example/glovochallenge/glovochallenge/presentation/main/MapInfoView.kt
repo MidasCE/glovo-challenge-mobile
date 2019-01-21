@@ -1,4 +1,6 @@
 package com.example.glovochallenge.glovochallenge.presentation.main
 
-class MapPresenterImpl : MapPresenter {
+interface MapInfoView {
+
+    fun navigateToPermissionSettings()
 }

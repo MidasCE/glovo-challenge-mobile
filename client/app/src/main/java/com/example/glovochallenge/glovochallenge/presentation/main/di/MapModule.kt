@@ -9,8 +9,8 @@ import com.example.glovochallenge.glovochallenge.domain.mapper.CityInfoMapper
 import com.example.glovochallenge.glovochallenge.domain.mapper.CountryMapper
 import com.example.glovochallenge.glovochallenge.domain.model.City
 import com.example.glovochallenge.glovochallenge.domain.model.Country
-import com.example.glovochallenge.glovochallenge.presentation.main.MapActivity
-import com.example.glovochallenge.glovochallenge.presentation.main.MapView
+import com.example.glovochallenge.glovochallenge.presentation.main.MapInfoActivity
+import com.example.glovochallenge.glovochallenge.presentation.main.MapInfoView
 import dagger.Module
 import dagger.Provides
 
@@ -18,7 +18,7 @@ import dagger.Provides
 class MapModule{
 
     @Provides
-    fun provideMapView(mapActivity: MapActivity) : MapView = mapActivity
+    fun provideMapView(mapActivity: MapInfoActivity) : MapInfoView = mapActivity
 
     @Provides
     fun provideCountryMapper(): Mapper<CountryNetworkModel, Country> = CountryMapper()
