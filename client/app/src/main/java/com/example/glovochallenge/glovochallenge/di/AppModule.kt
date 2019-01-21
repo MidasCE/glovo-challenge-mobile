@@ -2,11 +2,11 @@ package com.example.glovochallenge.glovochallenge.di
 
 import android.app.Application
 import android.content.Context
-import com.example.glovochallenge.glovochallenge.presentation.main.di.MapComponent
+import com.example.glovochallenge.glovochallenge.presentation.main.di.MapInfoComponent
 import dagger.Module
 import dagger.Provides
 
-@Module(subcomponents = [MapComponent::class])
+@Module(subcomponents = [MapInfoComponent::class])
 class AppModule {
 
     @Provides

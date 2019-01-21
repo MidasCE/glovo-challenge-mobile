@@ -15,7 +15,7 @@ import dagger.Module
 import dagger.Provides
 
 @Module
-class MapModule{
+class MapInfoModule{
 
     @Provides
     fun provideMapView(mapActivity: MapInfoActivity) : MapInfoView = mapActivity

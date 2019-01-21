@@ -1,10 +1,10 @@
 package com.example.glovochallenge.glovochallenge.di
 
 import android.content.Context
+import com.example.glovochallenge.glovochallenge.data.api.NetworkAPI
 import com.example.glovochallenge.glovochallenge.data.provider.AppLocationProvider
 import com.example.glovochallenge.glovochallenge.data.provider.AppLocationProviderImpl
-import com.example.glovochallenge.glovochallenge.data.repository.SettingsRepository
-import com.example.glovochallenge.glovochallenge.data.repository.SettingsRepositoryImpl
+import com.example.glovochallenge.glovochallenge.data.repository.*
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Module
@@ -17,6 +17,11 @@ import javax.inject.Singleton
 
 @Module
 class NetworkModule {
+
+
+    @Provides
+    @Singleton
+    fun provideNetworkAPI(retrofit: Retrofit): NetworkAPI = retrofit.create<NetworkAPI>(NetworkAPI::class.java)
 
     @Provides
     @Singleton
@@ -42,4 +47,14 @@ class NetworkModule {
     @Singleton
     fun provideSettingsRepository(context: Context): SettingsRepository =
         SettingsRepositoryImpl(context)
+
+    @Provides
+    @Singleton
+    fun provideCityRepository(networkAPI: NetworkAPI): CityRepository =
+        CityRepositoryImpl(networkAPI)
+
+    @Provides
+    @Singleton
+    fun provideCountryRepository(networkAPI: NetworkAPI): CountryRepository =
+        CountryRepositoryImpl(networkAPI)
 }

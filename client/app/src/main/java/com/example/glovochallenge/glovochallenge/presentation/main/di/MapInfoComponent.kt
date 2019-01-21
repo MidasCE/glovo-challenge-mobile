@@ -4,8 +4,8 @@ import com.example.glovochallenge.glovochallenge.presentation.main.MapInfoActivi
 import dagger.Subcomponent
 import dagger.android.AndroidInjector
 
-@Subcomponent(modules = [MapModule::class])
-interface MapComponent : AndroidInjector<MapInfoActivity> {
+@Subcomponent(modules = [MapInfoModule::class])
+interface MapInfoComponent : AndroidInjector<MapInfoActivity> {
 
     @Subcomponent.Builder
     abstract class Builder : AndroidInjector.Builder<MapInfoActivity>()
