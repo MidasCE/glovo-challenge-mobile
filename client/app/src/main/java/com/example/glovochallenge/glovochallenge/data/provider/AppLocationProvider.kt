@@ -3,7 +3,7 @@ package com.example.glovochallenge.glovochallenge.data.provider
 import com.example.glovochallenge.glovochallenge.data.model.CoordinateEntity
 import io.reactivex.Single
 
-interface LocationProvider {
+interface AppLocationProvider {
 
     fun isPermissionGranted() : Boolean
 

@@ -1,8 +1,10 @@
 package com.example.glovochallenge.glovochallenge.di
 
 import android.content.Context
-import com.example.glovochallenge.glovochallenge.data.provider.LocationProvider
-import com.example.glovochallenge.glovochallenge.data.provider.LocationProviderImpl
+import com.example.glovochallenge.glovochallenge.data.provider.AppLocationProvider
+import com.example.glovochallenge.glovochallenge.data.provider.AppLocationProviderImpl
+import com.example.glovochallenge.glovochallenge.data.repository.SettingsRepository
+import com.example.glovochallenge.glovochallenge.data.repository.SettingsRepositoryImpl
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Module
@@ -18,8 +20,8 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    fun provideLocationProvider(context: Context): LocationProvider {
-        return LocationProviderImpl(context)
+    fun provideLocationProvider(context: Context): AppLocationProvider {
+        return AppLocationProviderImpl(context)
     }
 
     @Provides
@@ -35,4 +37,9 @@ class NetworkModule {
     @Singleton
     fun provideGson(): Gson = GsonBuilder()
         .create()
+
+    @Provides
+    @Singleton
+    fun provideSettingsRepository(context: Context): SettingsRepository =
+        SettingsRepositoryImpl(context)
 }

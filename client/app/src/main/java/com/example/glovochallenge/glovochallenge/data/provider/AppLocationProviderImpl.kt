@@ -13,7 +13,7 @@ import com.example.glovochallenge.glovochallenge.data.model.CoordinateEntity
 import io.reactivex.Single
 import java.lang.Exception
 
-class LocationProviderImpl(private val context: Context) : LocationProvider, LocationListener {
+class AppLocationProviderImpl(private val context: Context) : AppLocationProvider, LocationListener {
 
     override fun onLocationChanged(p0: Location?) {
 
