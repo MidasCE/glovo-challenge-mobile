@@ -4,5 +4,6 @@ sealed class CitySearchItem {
 
     data class CountryItem(val countryName : String) : CitySearchItem()
 
-    data class CityItem(val cityName : String) : CitySearchItem()
+    data class CityItem(val cityName : String,
+                        val cityCode : String) : CitySearchItem()
 }

@@ -10,7 +10,7 @@ import com.example.glovochallenge.glovochallenge.presentation.citysearch.list.Ci
 import com.example.glovochallenge.glovochallenge.presentation.citysearch.model.CitySearchItem
 import javax.inject.Inject
 
-class CitySearchActivity: Activity() , CitySearchView {
+class CitySearchActivity: Activity() , CitySearchView, CitySearchAdapter.CityItemInteractionListener {
 
     @Inject
     lateinit var presenter: CitySearchPresenter
@@ -35,5 +35,13 @@ class CitySearchActivity: Activity() , CitySearchView {
     override fun showCityGroup(items: List<CitySearchItem>) {
         adapter.items = items
         adapter.notifyDataSetChanged()
+    }
+
+    override fun onCityItemClick(cityCode: String) {
+        presenter.saveSelectCityCode(cityCode)
+    }
+    
+    override fun navigateBackTomapView() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 }

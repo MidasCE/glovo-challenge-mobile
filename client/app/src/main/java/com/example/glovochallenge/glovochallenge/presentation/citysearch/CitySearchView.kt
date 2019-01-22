@@ -5,4 +5,6 @@ import com.example.glovochallenge.glovochallenge.presentation.citysearch.model.C
 interface CitySearchView {
 
     fun showCityGroup(items: List<CitySearchItem>)
+
+    fun navigateBackTomapView()
 }

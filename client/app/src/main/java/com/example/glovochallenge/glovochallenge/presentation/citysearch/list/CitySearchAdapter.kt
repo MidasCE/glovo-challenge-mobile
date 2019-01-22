@@ -1,6 +1,5 @@
 package com.example.glovochallenge.glovochallenge.presentation.citysearch.list
 
-import android.annotation.SuppressLint
 import android.support.annotation.LayoutRes
 import android.support.v7.widget.RecyclerView
 import android.view.View
@@ -11,7 +10,8 @@ import android.view.LayoutInflater
 import com.example.glovochallenge.glovochallenge.presentation.citysearch.model.CitySearchItem
 import java.util.*
 
-class CitySearchAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class CitySearchAdapter(private val cityItemInteractionListener: CityItemInteractionListener) :
+    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     var items : List<CitySearchItem> = emptyList()
 
@@ -42,6 +42,9 @@ class CitySearchAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 val city = items[position] as CitySearchItem.CityItem
                 val holder = viewHolder as CityViewHolder
                 holder.cityNameTextView.text = city.cityName
+                holder.cityNameTextView.setOnClickListener {
+                    cityItemInteractionListener.onCityItemClick(city.cityCode)
+                }
             }
         }
     }
@@ -64,4 +67,9 @@ class CitySearchAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private fun inflateLayout(@LayoutRes layoutRes: Int, parent: ViewGroup): View =
         LayoutInflater.from(parent.context).inflate(layoutRes, parent, false)
+
+
+    interface CityItemInteractionListener {
+        fun onCityItemClick(cityCode : String)
+    }
 }
