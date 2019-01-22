@@ -1,6 +1,8 @@
 package com.example.glovochallenge.glovochallenge.di
 
 import android.app.Activity
+import com.example.glovochallenge.glovochallenge.presentation.citysearch.CitySearchActivity
+import com.example.glovochallenge.glovochallenge.presentation.citysearch.di.CitySearchComponent
 import com.example.glovochallenge.glovochallenge.presentation.main.MapInfoActivity
 import com.example.glovochallenge.glovochallenge.presentation.main.di.MapInfoComponent
 import dagger.Binds
@@ -16,5 +18,10 @@ abstract class ActivityBuilder {
     @IntoMap
     @ActivityKey(MapInfoActivity::class)
     abstract fun bindMapActivity(builder: MapInfoComponent.Builder): AndroidInjector.Factory<out Activity>
+
+    @Binds
+    @IntoMap
+    @ActivityKey(CitySearchActivity::class)
+    abstract fun bindCitySearchActivity(builder: CitySearchComponent.Builder): AndroidInjector.Factory<out Activity>
 
 }
