@@ -6,7 +6,30 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1e8bec2a-88d4-4556-a7ed-a7e3364d6932" name="Default" comment="" />
+    <list default="true" id="1e8bec2a-88d4-4556-a7ed-a7e3364d6932" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/client/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/src/main/java/com/example/glovochallenge/glovochallenge/data/api/NetworkAPI.kt" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/src/main/java/com/example/glovochallenge/glovochallenge/data/api/NetworkAPI.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/src/main/java/com/example/glovochallenge/glovochallenge/data/repository/CityRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/src/main/java/com/example/glovochallenge/glovochallenge/data/repository/CityRepository.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/src/main/java/com/example/glovochallenge/glovochallenge/data/repository/CityRepositoryImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/src/main/java/com/example/glovochallenge/glovochallenge/data/repository/CityRepositoryImpl.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/src/main/java/com/example/glovochallenge/glovochallenge/data/repository/CountryRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/src/main/java/com/example/glovochallenge/glovochallenge/data/repository/CountryRepository.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/src/main/java/com/example/glovochallenge/glovochallenge/data/repository/CountryRepositoryImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/src/main/java/com/example/glovochallenge/glovochallenge/data/repository/CountryRepositoryImpl.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/src/main/java/com/example/glovochallenge/glovochallenge/di/DomainModule.kt" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/src/main/java/com/example/glovochallenge/glovochallenge/di/DomainModule.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/src/main/java/com/example/glovochallenge/glovochallenge/domain/interactor/CityCodeInteractor.kt" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/src/main/java/com/example/glovochallenge/glovochallenge/domain/interactor/CityCodeInteractor.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/src/main/java/com/example/glovochallenge/glovochallenge/domain/interactor/CityCodeInteractorImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/src/main/java/com/example/glovochallenge/glovochallenge/domain/interactor/CityCodeInteractorImpl.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/src/main/java/com/example/glovochallenge/glovochallenge/domain/interactor/CityGroupInteractor.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/src/main/java/com/example/glovochallenge/glovochallenge/domain/interactor/CityGroupInteractorImpl.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/src/main/java/com/example/glovochallenge/glovochallenge/domain/interactor/LocationPermissionInteractor.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/src/main/java/com/example/glovochallenge/glovochallenge/domain/interactor/LocationPermissionInteratorImpl.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/src/main/java/com/example/glovochallenge/glovochallenge/presentation/citysearch/CitySearchActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/src/main/java/com/example/glovochallenge/glovochallenge/presentation/citysearch/CitySearchActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/src/main/java/com/example/glovochallenge/glovochallenge/presentation/citysearch/CitySearchPresenterImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/src/main/java/com/example/glovochallenge/glovochallenge/presentation/citysearch/CitySearchPresenterImpl.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/src/main/java/com/example/glovochallenge/glovochallenge/presentation/main/MapInfoActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/src/main/java/com/example/glovochallenge/glovochallenge/presentation/main/MapInfoActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/src/main/java/com/example/glovochallenge/glovochallenge/presentation/main/MapInfoPresenter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/src/main/java/com/example/glovochallenge/glovochallenge/presentation/main/MapInfoPresenter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/src/main/java/com/example/glovochallenge/glovochallenge/presentation/main/MapInfoPresenterImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/src/main/java/com/example/glovochallenge/glovochallenge/presentation/main/MapInfoPresenterImpl.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/src/main/java/com/example/glovochallenge/glovochallenge/presentation/main/MapInfoView.kt" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/src/main/java/com/example/glovochallenge/glovochallenge/presentation/main/MapInfoView.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/src/main/res/layout/layout_map.xml" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/src/main/res/layout/layout_map.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/buildsystem/dependencies.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/client/buildsystem/dependencies.gradle" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -31,14 +54,34 @@
     <option name="height" value="832" />
   </component>
   <component name="ProjectView">
-    <navigator proportions="" version="1">
+    <navigator currentView="ProjectPane" proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="ProjectPane" />
-      <pane id="Scope" />
       <pane id="AndroidView" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="glovo-challenge-mobile" type="b2602c69:ProjectViewProjectNode" />
+              <item name="glovo-challenge-mobile" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="glovo-challenge-mobile" type="b2602c69:ProjectViewProjectNode" />
+              <item name="glovo-challenge-mobile" type="462c0819:PsiDirectoryNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="glovo-challenge-mobile" type="b2602c69:ProjectViewProjectNode" />
+              <item name="glovo-challenge-mobile" type="462c0819:PsiDirectoryNode" />
+              <item name="server" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
       <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -118,6 +161,9 @@
       <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
     </configuration>
   </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="1e8bec2a-88d4-4556-a7ed-a7e3364d6932" name="Default" comment="" />
@@ -129,32 +175,32 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1440" height="832" extended-state="6" />
+    <frame x="0" y="23" width="1440" height="832" extended-state="0" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="right" id="Palette&#9;" />
-      <window_info id="Image Layers" />
-      <window_info anchor="right" id="Capture Analysis" />
-      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info anchor="right" id="Palette&#9;" order="3" />
+      <window_info id="Image Layers" order="2" />
+      <window_info anchor="right" id="Capture Analysis" order="3" />
+      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Version Control" />
-      <window_info anchor="bottom" id="Terminal" />
-      <window_info id="Capture Tool" />
-      <window_info id="Designer" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info anchor="bottom" id="Terminal" order="7" />
+      <window_info id="Capture Tool" order="2" />
+      <window_info id="Designer" order="2" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24964234" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="right" id="Fabric" />
-      <window_info anchor="right" id="Theme Preview" />
+      <window_info anchor="right" id="Fabric" order="3" />
+      <window_info anchor="right" id="Theme Preview" order="3" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info id="Favorites" side_tool="true" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info id="Captures" order="2" weight="0.25" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info id="Captures" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">

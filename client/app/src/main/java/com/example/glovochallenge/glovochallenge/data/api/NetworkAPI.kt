@@ -10,10 +10,10 @@ import retrofit2.http.Path
 interface NetworkAPI {
 
     @GET("cities")
-    fun getCityList(): Single<List<CityDetailNetworkModel>>
+    fun getCityList(): Single<List<CityInfoNetworkModel>>
 
     @GET("cities/{city_code}")
-    fun getCityDetail(@Path("city_code") cityCode: String): Single<List<CityInfoNetworkModel>>
+    fun getCityDetail(@Path("city_code") cityCode: String): Single<CityDetailNetworkModel>
 
     @GET("countries")
     fun getCountryList(): Single<List<CountryNetworkModel>>

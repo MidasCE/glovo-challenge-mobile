@@ -2,12 +2,12 @@ package com.example.glovochallenge.glovochallenge.presentation.citysearch
 
 import com.example.glovochallenge.glovochallenge.core.scheduler.SchedulerFactory
 import com.example.glovochallenge.glovochallenge.domain.interactor.CityCodeInteractor
-import com.example.glovochallenge.glovochallenge.domain.interactor.CityGroupInteractor
+import com.example.glovochallenge.glovochallenge.domain.interactor.CountryGroupInteractor
 import com.example.glovochallenge.glovochallenge.presentation.citysearch.model.CitySearchItem
 import io.reactivex.disposables.CompositeDisposable
 
 class CitySearchPresenterImpl(
-    private val cityGroupInteractor: CityGroupInteractor,
+    private val countryGroupInteractor: CountryGroupInteractor,
     private val cityCodeInteractor: CityCodeInteractor,
     private val schedulerFactory: SchedulerFactory,
     private val citySearchView: CitySearchView
@@ -16,12 +16,12 @@ class CitySearchPresenterImpl(
     private var compositeDisposable = CompositeDisposable()
 
     override fun loadCityGroup() {
-        val disposable = cityGroupInteractor.getCityGroup()
+        val disposable = countryGroupInteractor.getCacheCountryWithCityGroup()
             .subscribeOn(schedulerFactory.io())
             .observeOn(schedulerFactory.main())
-            .subscribe({ cityGroupMap ->
+            .subscribe({ groupMap ->
                 val itemsList = mutableListOf<CitySearchItem>()
-                for ((country, cityList) in cityGroupMap) {
+                for ((country, cityList) in groupMap) {
                     val countryItem = CitySearchItem.CountryItem(country.name)
                     itemsList.add(countryItem)
                     for (city in cityList) {
@@ -31,16 +31,17 @@ class CitySearchPresenterImpl(
                 }
                 citySearchView.showCityGroup(itemsList)
             }, {
+
             })
         compositeDisposable.add(disposable)
-    }
-
-    override fun onActivityDestroy() {
-        compositeDisposable.clear()
     }
 
     override fun saveSelectCityCode(cityCode: String) {
         cityCodeInteractor.saveSelectCityCode(cityCode)
         citySearchView.navigateBackTomapView()
+    }
+
+    override fun onActivityDestroy() {
+        compositeDisposable.clear()
     }
 }

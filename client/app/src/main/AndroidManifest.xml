@@ -15,7 +15,9 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             tools:ignore="GoogleAppIndexingWarning">
-
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyBf5nKRMxMWosHH8pykZLd5SGCDtxXh94g"/>
         <activity android:name=".presentation.main.MapInfoActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>

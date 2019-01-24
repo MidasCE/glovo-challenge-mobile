@@ -4,7 +4,9 @@ import com.example.glovochallenge.glovochallenge.domain.model.City
 import com.example.glovochallenge.glovochallenge.domain.model.Country
 import io.reactivex.Single
 
-interface CityGroupInteractor {
+interface CityInfoInteractor {
 
-    fun getCityGroup(): Single<HashMap<Country, List<City>>>
+    fun getCityList(): Single<List<City>>
+
+    fun getCityDetail(): Single<City>
 }

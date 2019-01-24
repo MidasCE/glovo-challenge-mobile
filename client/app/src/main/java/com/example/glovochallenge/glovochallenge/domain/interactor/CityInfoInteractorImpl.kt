@@ -2,34 +2,34 @@ package com.example.glovochallenge.glovochallenge.domain.interactor
 
 import com.example.glovochallenge.glovochallenge.data.repository.CityRepository
 import com.example.glovochallenge.glovochallenge.data.repository.CountryRepository
+import com.example.glovochallenge.glovochallenge.data.repository.SettingsRepository
 import com.example.glovochallenge.glovochallenge.domain.mapper.CityDetailMapper
+import com.example.glovochallenge.glovochallenge.domain.mapper.CityInfoMapper
 import com.example.glovochallenge.glovochallenge.domain.mapper.CountryMapper
 import com.example.glovochallenge.glovochallenge.domain.model.City
 import com.example.glovochallenge.glovochallenge.domain.model.Country
 import io.reactivex.Single
 import io.reactivex.rxkotlin.zipWith
 
-class CityGroupInteractorImpl(
+class CityInfoInteractorImpl(
     private val cityRepository: CityRepository,
+    private val settingsRepository: SettingsRepository,
     private val countryRepository: CountryRepository,
     private val cityDetailMapper: CityDetailMapper,
+    private val cityInfoMapper: CityInfoMapper,
     private val countryMapper: CountryMapper
-) : CityGroupInteractor {
+) : CityInfoInteractor {
 
-    override fun getCityGroup(): Single<HashMap<Country, List<City>>> =
-        cityRepository.getCityList().zipWith(countryRepository.getCountryList()).map {
-            val groupCity = HashMap<Country, List<City>>()
-            val countryList = it.second.map { countryNetworkModel ->
-                countryMapper.map(countryNetworkModel)
+    override fun getCityList(): Single<List<City>> =
+        cityRepository.getCityList().map {
+            it.map { cityInfo ->
+                cityInfoMapper.map(cityInfo)
             }
-            val cityList = it.first.map { cityNetworkModel ->
-                cityDetailMapper.map(cityNetworkModel)
-            }
-            countryList.forEach { country ->
-                val city = cityList.filter { city -> city.countryCode == country.code }
-                groupCity[country] = city
-            }
-            groupCity
+        }
+
+    override fun getCityDetail(): Single<City> =
+        cityRepository.getCityDetail(settingsRepository.getSelectCityCode() ?: "").map {
+            cityDetailMapper.map(it)
         }
 
 }

@@ -7,6 +7,4 @@ class CityCodeInteractorImpl(private val settingsRepository: SettingsRepository)
     override fun saveSelectCityCode(cityCode: String) {
         settingsRepository.saveSelectCityCode(cityCode)
     }
-
-    override fun getSelectCityCode() = settingsRepository.getSelectCityCode().orEmpty()
 }

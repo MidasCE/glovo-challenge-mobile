@@ -40,8 +40,14 @@ class CitySearchActivity: Activity() , CitySearchView, CitySearchAdapter.CityIte
     override fun onCityItemClick(cityCode: String) {
         presenter.saveSelectCityCode(cityCode)
     }
-    
+
+    override fun onDestroy() {
+        presenter.onActivityDestroy()
+        super.onDestroy()
+    }
+
     override fun navigateBackTomapView() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        setResult(Activity.RESULT_OK)
+        finish()
     }
 }

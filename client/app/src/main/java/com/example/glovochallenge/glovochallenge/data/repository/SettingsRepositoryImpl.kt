@@ -14,7 +14,7 @@ class SettingsRepositoryImpl(private val context: Context) : SettingsRepository 
             APP_SETTINGS_FILE, Context.MODE_PRIVATE)
         with (sharedPref.edit()) {
             putString(CITY_CODE, cityCode)
-            apply()
+            commit()
         }
     }
 

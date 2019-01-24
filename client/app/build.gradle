@@ -30,6 +30,7 @@ dependencies {
     compileOnly applicationDependencies.javaxAnnotation
     compileOnly applicationDependencies.javaxInject
 
+    compile applicationDependencies.mapUtils
     implementation applicationDependencies.kotlin
     implementation applicationDependencies.appCompat
     implementation applicationDependencies.constraintLayout
@@ -49,7 +50,6 @@ dependencies {
 
     testImplementation unitTestDependencies.kotlin
     testImplementation unitTestDependencies.kotlinTest
-    testImplementation unitTestDependencies.robolectric
     testImplementation unitTestDependencies.junit
     testImplementation unitTestDependencies.mockito
     testImplementation unitTestDependencies.kluent
