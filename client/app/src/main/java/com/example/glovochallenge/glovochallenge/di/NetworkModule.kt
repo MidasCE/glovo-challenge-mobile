@@ -18,7 +18,6 @@ import javax.inject.Singleton
 @Module
 class NetworkModule {
 
-
     @Provides
     @Singleton
     fun provideNetworkAPI(retrofit: Retrofit): NetworkAPI = retrofit.create<NetworkAPI>(NetworkAPI::class.java)
@@ -32,7 +31,7 @@ class NetworkModule {
     @Provides
     @Singleton
     fun provideRetrofit(gson: Gson): Retrofit = Retrofit.Builder()
-        .baseUrl("http://127.0.0.1:3000/api/")
+        .baseUrl("http://10.0.2.2:3000/api/")
         .client(OkHttpClient.Builder().build())
         .addConverterFactory(GsonConverterFactory.create(gson))
         .addCallAdapterFactory(RxJava2CallAdapterFactory.create())

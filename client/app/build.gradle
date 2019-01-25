@@ -31,6 +31,7 @@ dependencies {
     compileOnly applicationDependencies.javaxInject
 
     compile applicationDependencies.mapUtils
+    implementation applicationDependencies.googleMap
     implementation applicationDependencies.kotlin
     implementation applicationDependencies.appCompat
     implementation applicationDependencies.constraintLayout
@@ -46,7 +47,7 @@ dependencies {
     implementation applicationDependencies.rxKotlin
     implementation applicationDependencies.okhttpLoggingInterceptor
     implementation applicationDependencies.parcelerApi
-    annotationProcessor applicationDependencies.parceler
+    kapt applicationDependencies.parceler
 
     testImplementation unitTestDependencies.kotlin
     testImplementation unitTestDependencies.kotlinTest

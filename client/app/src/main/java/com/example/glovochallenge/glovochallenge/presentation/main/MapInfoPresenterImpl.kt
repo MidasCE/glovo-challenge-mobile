@@ -1,5 +1,6 @@
 package com.example.glovochallenge.glovochallenge.presentation.main
 
+import android.util.Log
 import com.example.glovochallenge.glovochallenge.core.Mapper
 import com.example.glovochallenge.glovochallenge.core.scheduler.SchedulerFactory
 import com.example.glovochallenge.glovochallenge.domain.interactor.CityCodeInteractor
@@ -38,6 +39,7 @@ class MapInfoPresenterImpl(
                         view.navigateToCitySearch()
                     }
                 }, {
+                    Log.e("error", "some error", it)
                 })
             compositeDisposable.add(disposable)
         } else {
@@ -52,6 +54,7 @@ class MapInfoPresenterImpl(
             .subscribe({
                 val viewModel = cityViewModelMapper.map(it)
                 if (viewModel != null) {
+                    view.setMapLocation(viewModel)
                     view.updateCityDetailInformation(viewModel)
                 }
             }, {

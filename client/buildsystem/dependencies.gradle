@@ -20,6 +20,7 @@ ext {
     rx_java_version = '2.4.0'
     rx_kotlin_version = '2.3.0'
     parceler_version = '1.1.12'
+    google_maps_version = '16.0.0'
     maps_utils = '0.5+'
 
     //Unit Testing
@@ -51,6 +52,7 @@ ext {
             rxAndroid               : "io.reactivex.rxjava2:rxandroid:$rx_android_version",
             rxKotlin                : "io.reactivex.rxjava2:rxkotlin:$rx_kotlin_version",
             okhttpLoggingInterceptor: "com.squareup.okhttp3:logging-interceptor:$okhttp_logging_interceptor_version",
+            googleMap               : "com.google.android.gms:play-services-maps:$google_maps_version",
             mapUtils                : "com.google.maps.android:android-maps-utils:$maps_utils"
     ]
 

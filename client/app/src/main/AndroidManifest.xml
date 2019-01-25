@@ -18,6 +18,9 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyBf5nKRMxMWosHH8pykZLd5SGCDtxXh94g"/>
+        <meta-data
+                android:name="com.google.android.gms.version"
+                android:value="@integer/google_play_services_version" />
         <activity android:name=".presentation.main.MapInfoActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -26,7 +29,6 @@
         </activity>
 
         <activity
-                android:name=".presentation.citysearch.CitySearchActivity"
-                android:configChanges="orientation|screenSize"/>
+                android:name=".presentation.citysearch.CitySearchActivity"/>
     </application>
 </manifest>

@@ -8,7 +8,9 @@ import io.reactivex.Single
 class CityRepositoryImpl(private val networkAPI: NetworkAPI) : CityRepository {
     override var cacheCityList: List<CityInfoNetworkModel>? = null
 
-    override fun getCityList(): Single<List<CityInfoNetworkModel>> = networkAPI.getCityList()
+    override fun getCityList(): Single<List<CityInfoNetworkModel>> = networkAPI.getCityList().doOnSuccess {
+        cacheCityList = it
+    }
 
     override fun getCityDetail(cityCode: String): Single<CityDetailNetworkModel>
             = networkAPI.getCityDetail(cityCode)

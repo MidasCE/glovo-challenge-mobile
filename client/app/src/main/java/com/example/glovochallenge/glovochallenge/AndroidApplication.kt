@@ -6,6 +6,7 @@ import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
 import javax.inject.Inject
+import com.example.glovochallenge.glovochallenge.di.DaggerAppComponent
 
 class AndroidApplication : Application(), HasActivityInjector {
 
@@ -14,7 +15,7 @@ class AndroidApplication : Application(), HasActivityInjector {
 
     override fun onCreate() {
         super.onCreate()
-        DaggerApplicationComponent.builder().application(this).build().inject(this)
+        DaggerAppComponent.builder().application(this).build().inject(this)
     }
 
     override fun activityInjector(): AndroidInjector<Activity> = activityInjector

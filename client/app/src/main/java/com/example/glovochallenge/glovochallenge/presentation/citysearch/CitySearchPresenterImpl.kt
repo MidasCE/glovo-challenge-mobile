@@ -1,5 +1,6 @@
 package com.example.glovochallenge.glovochallenge.presentation.citysearch
 
+import android.util.Log
 import com.example.glovochallenge.glovochallenge.core.scheduler.SchedulerFactory
 import com.example.glovochallenge.glovochallenge.domain.interactor.CityCodeInteractor
 import com.example.glovochallenge.glovochallenge.domain.interactor.CountryGroupInteractor
@@ -31,7 +32,7 @@ class CitySearchPresenterImpl(
                 }
                 citySearchView.showCityGroup(itemsList)
             }, {
-
+                Log.e("error", "some error", it)
             })
         compositeDisposable.add(disposable)
     }

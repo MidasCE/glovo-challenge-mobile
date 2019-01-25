@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView
 import com.example.glovochallenge.glovochallenge.R
 import com.example.glovochallenge.glovochallenge.presentation.citysearch.list.CitySearchAdapter
 import com.example.glovochallenge.glovochallenge.presentation.citysearch.model.CitySearchItem
+import dagger.android.AndroidInjection
 import javax.inject.Inject
 
 class CitySearchActivity: Activity() , CitySearchView, CitySearchAdapter.CityItemInteractionListener {
@@ -15,21 +16,22 @@ class CitySearchActivity: Activity() , CitySearchView, CitySearchAdapter.CityIte
     @Inject
     lateinit var presenter: CitySearchPresenter
 
-    @Inject
-    lateinit var adapter: CitySearchAdapter
-
+    private lateinit var adapter: CitySearchAdapter
     private lateinit var citySearchRecyclerView: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.layout_city_search)
+        AndroidInjection.inject(this)
 
         citySearchRecyclerView = findViewById(R.id.citySearchRecyclerView)
 
         val itemDecoration = DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
+        adapter = CitySearchAdapter(this)
         citySearchRecyclerView.addItemDecoration(itemDecoration)
         citySearchRecyclerView.layoutManager = LinearLayoutManager(this)
         citySearchRecyclerView.adapter = adapter
+        presenter.loadCityGroup()
     }
 
     override fun showCityGroup(items: List<CitySearchItem>) {

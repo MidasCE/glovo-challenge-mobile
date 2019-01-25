@@ -1,5 +1,5 @@
 package com.example.glovochallenge.glovochallenge.core
 
-interface Mapper<in I, out O> {
+interface Mapper<I, O> {
     fun map(value: I): O
 }

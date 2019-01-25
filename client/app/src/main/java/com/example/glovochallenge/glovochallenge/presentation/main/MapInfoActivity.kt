@@ -6,21 +6,26 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.support.v4.app.ActivityCompat
+import android.support.v4.app.FragmentActivity
+import android.widget.TextView
 import com.example.glovochallenge.glovochallenge.R
 import com.example.glovochallenge.glovochallenge.presentation.citysearch.CitySearchActivity
 import com.example.glovochallenge.glovochallenge.presentation.main.model.CityViewModel
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.MapFragment
 import com.google.android.gms.maps.OnMapReadyCallback
 import javax.inject.Inject
+import com.google.android.gms.maps.SupportMapFragment
+import dagger.android.AndroidInjection
 
-class MapInfoActivity: Activity(), MapInfoView , OnMapReadyCallback {
+
+class MapInfoActivity: FragmentActivity(), MapInfoView , OnMapReadyCallback {
 
     @Inject
     lateinit var presenter: MapInfoPresenter
 
     private lateinit var mapView : GoogleMap
+    private lateinit var cityNameTextView : TextView
 
     companion object {
         const val REQUEST_CODE_ASK_PERMISSIONS = 123
@@ -30,16 +35,21 @@ class MapInfoActivity: Activity(), MapInfoView , OnMapReadyCallback {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.layout_map)
+        AndroidInjection.inject(this)
         initView()
     }
 
     private fun initView() {
-        val mapFragment = fragmentManager.findFragmentById(R.id.mapView) as MapFragment
+        cityNameTextView = findViewById(R.id.cityNameTextView)
+        val mapFragment = supportFragmentManager.findFragmentById(R.id.mapView)
+                as SupportMapFragment
         mapFragment.getMapAsync(this)
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
         mapView = googleMap
+        mapView.uiSettings.isZoomControlsEnabled = true;
+        presenter.firstLoad()
     }
 
     override fun navigateToPermissionSettings() {
@@ -69,7 +79,7 @@ class MapInfoActivity: Activity(), MapInfoView , OnMapReadyCallback {
     }
 
     override fun updateCityDetailInformation(city: CityViewModel) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        cityNameTextView.text = city.name
     }
 
     override fun navigateToCitySearch() {

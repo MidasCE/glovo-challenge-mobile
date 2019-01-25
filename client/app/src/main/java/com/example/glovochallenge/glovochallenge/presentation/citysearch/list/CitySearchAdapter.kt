@@ -23,7 +23,7 @@ class CitySearchAdapter(private val cityItemInteractionListener: CityItemInterac
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
             TYPE_COUNTRY -> CountryViewHolder(inflateLayout(R.layout.layout_country_row, parent))
-            TYPE_CITY -> CountryViewHolder(inflateLayout(R.layout.layout_city_row, parent))
+            TYPE_CITY -> CityViewHolder(inflateLayout(R.layout.layout_city_row, parent))
             else -> throw IllegalArgumentException(String.format(Locale.US, "Type %d - not support", viewType))
         }
     }
@@ -58,11 +58,11 @@ class CitySearchAdapter(private val cityItemInteractionListener: CityItemInterac
     }
 
     class CountryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val countryNameTextView: TextView = itemView.findViewById(R.id.countryNameTextView)
+        val countryNameTextView: TextView = itemView.findViewById(R.id.rowCountryNameTextView)
     }
 
     class CityViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val cityNameTextView: TextView = itemView.findViewById(R.id.cityNameTextView)
+        val cityNameTextView: TextView = itemView.findViewById(R.id.rowCityNameTextView)
     }
 
     private fun inflateLayout(@LayoutRes layoutRes: Int, parent: ViewGroup): View =
