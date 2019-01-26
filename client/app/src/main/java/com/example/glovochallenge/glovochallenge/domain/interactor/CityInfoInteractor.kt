@@ -6,6 +6,8 @@ import io.reactivex.Single
 
 interface CityInfoInteractor {
 
+    fun getCachedCityList(): List<City>
+
     fun getCityList(): Single<List<City>>
 
     fun getCityDetail(): Single<City>

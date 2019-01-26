@@ -7,19 +7,23 @@ import android.content.pm.PackageManager
 import android.os.Bundle
 import android.support.v4.app.ActivityCompat
 import android.support.v4.app.FragmentActivity
+import android.support.v4.content.ContextCompat
 import android.widget.TextView
 import com.example.glovochallenge.glovochallenge.R
 import com.example.glovochallenge.glovochallenge.presentation.citysearch.CitySearchActivity
-import com.example.glovochallenge.glovochallenge.presentation.main.model.CityViewModel
+import com.example.glovochallenge.glovochallenge.presentation.main.model.CityDetailViewModel
+import com.example.glovochallenge.glovochallenge.presentation.main.model.WorkingAreaViewModel
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import javax.inject.Inject
 import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.LatLngBounds
+import com.google.android.gms.maps.model.PolygonOptions
 import dagger.android.AndroidInjection
 
 
-class MapInfoActivity: FragmentActivity(), MapInfoView , OnMapReadyCallback {
+class MapInfoActivity: FragmentActivity(), MapInfoView , OnMapReadyCallback, GoogleMap.OnCameraIdleListener {
 
     @Inject
     lateinit var presenter: MapInfoPresenter
@@ -48,7 +52,8 @@ class MapInfoActivity: FragmentActivity(), MapInfoView , OnMapReadyCallback {
 
     override fun onMapReady(googleMap: GoogleMap) {
         mapView = googleMap
-        mapView.uiSettings.isZoomControlsEnabled = true;
+        mapView.uiSettings.isZoomControlsEnabled = true
+        mapView.setOnCameraIdleListener(this)
         presenter.firstLoad()
     }
 
@@ -74,12 +79,16 @@ class MapInfoActivity: FragmentActivity(), MapInfoView , OnMapReadyCallback {
         }
     }
 
-    override fun setMapLocation(city: CityViewModel) {
-        mapView.animateCamera(CameraUpdateFactory.newLatLngBounds(city.workingBoundary, 0))
+    override fun onCameraIdle() {
+        presenter.findWorkingArea(mapView.projection.visibleRegion.latLngBounds)
     }
 
-    override fun updateCityDetailInformation(city: CityViewModel) {
-        cityNameTextView.text = city.name
+    override fun setMapLocation(latLngBounds: LatLngBounds) {
+        mapView.animateCamera(CameraUpdateFactory.newLatLngBounds(latLngBounds, 0))
+    }
+
+    override fun updateCityDetailInformation(cityDetailViewModel: CityDetailViewModel) {
+        cityNameTextView.text = cityDetailViewModel.name
     }
 
     override fun navigateToCitySearch() {
@@ -93,5 +102,21 @@ class MapInfoActivity: FragmentActivity(), MapInfoView , OnMapReadyCallback {
             presenter.updateCityDetail()
         }
         super.onActivityResult(requestCode, resultCode, data)
+    }
+
+    override fun generateWorkingArea(cities: List<WorkingAreaViewModel>) {
+        mapView.clear()
+        cities.forEach { city ->
+            city.workingArea.forEach { locationList ->
+                if(locationList.isNotEmpty()) {
+                    mapView.addPolygon(
+                        PolygonOptions()
+                            .addAll(locationList)
+                            .fillColor(ContextCompat.getColor(this, R.color.`colorฺArea`)
+                    ))
+                }
+            }
+
+        }
     }
 }

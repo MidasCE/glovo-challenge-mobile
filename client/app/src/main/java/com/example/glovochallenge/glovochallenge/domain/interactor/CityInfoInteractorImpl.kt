@@ -8,11 +8,17 @@ import com.example.glovochallenge.glovochallenge.data.repository.SettingsReposit
 import com.example.glovochallenge.glovochallenge.domain.model.City
 import io.reactivex.Single
 
-class CityInfoInteractorImpl(private val cityRepository: CityRepository,
-                             private val settingsRepository: SettingsRepository,
-                             private val cityDetailMapper: Mapper<CityDetailNetworkModel, City>,
-                             private val cityInfoMapper: Mapper<CityInfoNetworkModel, City>
+class CityInfoInteractorImpl(
+    private val cityRepository: CityRepository,
+    private val settingsRepository: SettingsRepository,
+    private val cityDetailMapper: Mapper<CityDetailNetworkModel, City>,
+    private val cityInfoMapper: Mapper<CityInfoNetworkModel, City>
 ) : CityInfoInteractor {
+
+    override fun getCachedCityList(): List<City> =
+        cityRepository.cacheCityList?.map {
+            cityInfoMapper.map(it)
+        }.orEmpty()
 
     override fun getCityList(): Single<List<City>> =
         cityRepository.getCityList().map {

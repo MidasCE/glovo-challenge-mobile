@@ -7,8 +7,10 @@ import com.example.glovochallenge.glovochallenge.domain.interactor.CityCodeInter
 import com.example.glovochallenge.glovochallenge.domain.interactor.CityInfoInteractor
 import com.example.glovochallenge.glovochallenge.domain.interactor.LocationInteractor
 import com.example.glovochallenge.glovochallenge.domain.model.City
-import com.example.glovochallenge.glovochallenge.presentation.main.model.CityViewModel
+import com.example.glovochallenge.glovochallenge.presentation.main.model.CityDetailViewModel
+import com.example.glovochallenge.glovochallenge.presentation.main.model.WorkingAreaViewModel
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.LatLngBounds
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.zipWith
 
@@ -17,7 +19,8 @@ class MapInfoPresenterImpl(
     private val cityInfoInteractor: CityInfoInteractor,
     private val cityCodeInteractor: CityCodeInteractor,
     private val schedulerFactory: SchedulerFactory,
-    private val cityViewModelMapper : Mapper<City, CityViewModel?>,
+    private val workingAreaViewModelMapper: Mapper<City, WorkingAreaViewModel?>,
+    private val cityDetailViewModelMapper: Mapper<City, CityDetailViewModel?>,
     private val view: MapInfoView
 ) : MapInfoPresenter {
     private var compositeDisposable = CompositeDisposable()
@@ -28,9 +31,9 @@ class MapInfoPresenterImpl(
                 .subscribeOn(schedulerFactory.io())
                 .observeOn(schedulerFactory.main())
                 .subscribe({ pair ->
-                    val cityViewModelList = pair.first.mapNotNull { cityViewModelMapper.map(it) }
+                    val cityViewModelList = pair.first.mapNotNull { workingAreaViewModelMapper.map(it) }
                     val cityViewModel =
-                        findCityForLocation(cityViewModelList, LatLng(pair.second.latitude, pair.second.longitude))
+                        findWorkAreaForLocation(cityViewModelList, LatLng(pair.second.latitude, pair.second.longitude))
 
                     if (cityViewModel != null) {
                         cityCodeInteractor.saveSelectCityCode(cityViewModel.code)
@@ -52,18 +55,36 @@ class MapInfoPresenterImpl(
             .subscribeOn(schedulerFactory.io())
             .observeOn(schedulerFactory.main())
             .subscribe({
-                val viewModel = cityViewModelMapper.map(it)
+                val viewModel = workingAreaViewModelMapper.map(it)
                 if (viewModel != null) {
-                    view.setMapLocation(viewModel)
-                    view.updateCityDetailInformation(viewModel)
+                    view.setMapLocation(viewModel.workingBoundary)
+                    cityDetailViewModelMapper.map(it)?.let { detailViewModel ->
+                        view.updateCityDetailInformation(detailViewModel)
+                    }
                 }
             }, {
             })
         compositeDisposable.add(disposable)
     }
 
-    private fun findCityForLocation(cityViewModels : List<CityViewModel>, latLng : LatLng) : CityViewModel? =
-        cityViewModels.find {
+    override fun findWorkingArea(latLngBounds: LatLngBounds) {
+        cityInfoInteractor.getCachedCityList()
+            .takeIf { it.isNotEmpty() }
+            ?.let { list ->
+                val workingAreaViewModels = list.mapNotNull { workingAreaViewModelMapper.map(it) }
+                workingAreaViewModels.filter { workingArea ->
+                    latLngBounds.contains(workingArea.workingBoundary.northeast) ||
+                            latLngBounds.contains(workingArea.workingBoundary.southwest)
+                }.takeIf { it.isNotEmpty() }
+                    ?.let { workingAreas ->
+                        view.generateWorkingArea(workingAreas)
+                    }
+            }
+    }
+
+    private fun findWorkAreaForLocation(workingAreaViewModels: List<WorkingAreaViewModel>, latLng: LatLng)
+            : WorkingAreaViewModel? =
+        workingAreaViewModels.find {
             it.workingBoundary.contains(latLng)
         }
 

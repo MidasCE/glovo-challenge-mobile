@@ -10,8 +10,10 @@ import com.example.glovochallenge.glovochallenge.presentation.main.MapInfoActivi
 import com.example.glovochallenge.glovochallenge.presentation.main.MapInfoPresenter
 import com.example.glovochallenge.glovochallenge.presentation.main.MapInfoPresenterImpl
 import com.example.glovochallenge.glovochallenge.presentation.main.MapInfoView
-import com.example.glovochallenge.glovochallenge.presentation.main.mapper.CityViewModelMapper
-import com.example.glovochallenge.glovochallenge.presentation.main.model.CityViewModel
+import com.example.glovochallenge.glovochallenge.presentation.main.mapper.CityDetailViewModelMapper
+import com.example.glovochallenge.glovochallenge.presentation.main.mapper.WorkingAreaViewModelMapper
+import com.example.glovochallenge.glovochallenge.presentation.main.model.CityDetailViewModel
+import com.example.glovochallenge.glovochallenge.presentation.main.model.WorkingAreaViewModel
 import dagger.Module
 import dagger.Provides
 
@@ -22,15 +24,19 @@ class MapInfoModule{
     fun provideMapView(mapActivity: MapInfoActivity) : MapInfoView = mapActivity
 
     @Provides
-    fun providecityViewModelMapper() : Mapper<City, CityViewModel?> = CityViewModelMapper()
+    fun provideWorkingAreaViewModelMapper() : Mapper<City, WorkingAreaViewModel?> = WorkingAreaViewModelMapper()
+
+    @Provides
+    fun provideCityDetailViewModelMapper() : Mapper<City, CityDetailViewModel?> = CityDetailViewModelMapper()
 
     @Provides
     fun provideMapInfoPresenter(locationInteractor: LocationInteractor,
                                 cityInfoInteractor: CityInfoInteractor,
                                 cityCodeInteractor: CityCodeInteractor,
                                 schedulerFactory: SchedulerFactory,
-                                cityViewModelMapper : Mapper<City, CityViewModel?>,
+                                workingAreaViewModellMapper : Mapper<City, WorkingAreaViewModel?>,
+                                cityDetailViewModelMapper: Mapper<City, CityDetailViewModel?>,
                                 view: MapInfoView): MapInfoPresenter
             = MapInfoPresenterImpl(locationInteractor, cityInfoInteractor, cityCodeInteractor,
-            schedulerFactory, cityViewModelMapper, view)
+            schedulerFactory, workingAreaViewModellMapper, cityDetailViewModelMapper, view)
 }

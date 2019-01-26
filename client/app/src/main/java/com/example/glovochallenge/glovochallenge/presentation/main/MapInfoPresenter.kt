@@ -1,8 +1,12 @@
 package com.example.glovochallenge.glovochallenge.presentation.main
 
+import com.google.android.gms.maps.model.LatLngBounds
+
 interface MapInfoPresenter {
 
     fun firstLoad()
+
+    fun findWorkingArea(latLngBounds: LatLngBounds)
 
     fun updateCityDetail()
 
