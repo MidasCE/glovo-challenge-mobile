@@ -6,9 +6,11 @@ interface MapInfoPresenter {
 
     fun firstLoad()
 
-    fun findWorkingArea(latLngBounds: LatLngBounds)
+    fun onMarkerClick(name: String)
 
-    fun updateCityDetail()
+    fun handleWorkingArea(isZoomIn: Boolean, latLngBounds: LatLngBounds)
+
+    fun loadCityDetail(isFirstLoadDetail: Boolean = false)
 
     fun onReceivedLocationPermissionResponse(isGranted: Boolean)
 

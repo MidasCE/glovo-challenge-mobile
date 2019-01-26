@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">GlovoChallenge</string>
+    <string name="status">Status :</string>
+    <string name="busy">Busy</string>
+    <string name="available">Available</string>
+    <string name="timezone">Timezone :</string>
+    <string name="currency">Currency :</string>
 </resources>

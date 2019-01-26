@@ -23,6 +23,7 @@ class MapInfoPresenterImpl(
     private val cityDetailViewModelMapper: Mapper<City, CityDetailViewModel?>,
     private val view: MapInfoView
 ) : MapInfoPresenter {
+
     private var compositeDisposable = CompositeDisposable()
 
     override fun firstLoad() {
@@ -31,13 +32,15 @@ class MapInfoPresenterImpl(
                 .subscribeOn(schedulerFactory.io())
                 .observeOn(schedulerFactory.main())
                 .subscribe({ pair ->
-                    val cityViewModelList = pair.first.mapNotNull { workingAreaViewModelMapper.map(it) }
-                    val cityViewModel =
-                        findWorkAreaForLocation(cityViewModelList, LatLng(pair.second.latitude, pair.second.longitude))
-
-                    if (cityViewModel != null) {
-                        cityCodeInteractor.saveSelectCityCode(cityViewModel.code)
-                        updateCityDetail()
+                    val workingAreaViewModels = pair.first.mapNotNull { workingAreaViewModelMapper.map(it) }
+                    val workingAreaViewModel =
+                        findWorkAreaForLocation(
+                            workingAreaViewModels,
+                            LatLng(pair.second.latitude, pair.second.longitude)
+                        )
+                    if (workingAreaViewModel != null) {
+                        cityCodeInteractor.saveSelectCityCode(workingAreaViewModel.code)
+                        view.setMapLocation(workingAreaViewModel.workingBoundary)
                     } else {
                         view.navigateToCitySearch()
                     }
@@ -50,35 +53,67 @@ class MapInfoPresenterImpl(
         }
     }
 
-    override fun updateCityDetail() {
+    override fun handleWorkingArea(isZoomIn: Boolean, latLngBounds: LatLngBounds) {
+        cityInfoInteractor.getCachedCityList()
+            .takeIf { it.isNotEmpty() }
+            ?.asSequence()?.mapNotNull {
+                workingAreaViewModelMapper.map(it)
+            }
+            ?.filter { workingArea ->
+                latLngBounds.contains(workingArea.workingBoundary.center)
+            }
+            ?.toList()
+            ?.takeIf { it.isNotEmpty() }
+            ?.let { workingAreas ->
+                if (isZoomIn) {
+                    view.generateMarkerWorkingArea(workingAreas)
+                } else {
+                    view.generateWorkingArea(workingAreas)
+                }
+                val area = findWorkAreaForLocation(
+                    workingAreas,
+                    LatLng(latLngBounds.center.latitude, latLngBounds.center.longitude)
+                )
+                area?.let {
+                    cityCodeInteractor.saveSelectCityCode(it.code)
+                    loadCityDetail()
+                }
+            }
+    }
+
+    override fun loadCityDetail(isFirstLoadDetail: Boolean) {
         val disposable = cityInfoInteractor.getCityDetail()
             .subscribeOn(schedulerFactory.io())
             .observeOn(schedulerFactory.main())
-            .subscribe({
-                val viewModel = workingAreaViewModelMapper.map(it)
-                if (viewModel != null) {
-                    view.setMapLocation(viewModel.workingBoundary)
+            .subscribe(
+                {
                     cityDetailViewModelMapper.map(it)?.let { detailViewModel ->
                         view.updateCityDetailInformation(detailViewModel)
+                        if (isFirstLoadDetail) {
+                            workingAreaViewModelMapper.map(it)?.let { area ->
+                                view.setMapLocation(area.workingBoundary)
+                            }
+                        }
                     }
-                }
-            }, {
-            })
+                }, {
+                })
         compositeDisposable.add(disposable)
     }
 
-    override fun findWorkingArea(latLngBounds: LatLngBounds) {
+    override fun onMarkerClick(name: String) {
         cityInfoInteractor.getCachedCityList()
             .takeIf { it.isNotEmpty() }
             ?.let { list ->
-                val workingAreaViewModels = list.mapNotNull { workingAreaViewModelMapper.map(it) }
-                workingAreaViewModels.filter { workingArea ->
-                    latLngBounds.contains(workingArea.workingBoundary.northeast) ||
-                            latLngBounds.contains(workingArea.workingBoundary.southwest)
-                }.takeIf { it.isNotEmpty() }
-                    ?.let { workingAreas ->
-                        view.generateWorkingArea(workingAreas)
+                list.first {
+                    it.name == name
+                }.let {
+                    val viewModel = workingAreaViewModelMapper.map(it)
+                    if (viewModel != null) {
+                        cityCodeInteractor.saveSelectCityCode(viewModel.code)
+                        loadCityDetail()
+                        view.zoomMapLocation(viewModel.workingBoundary.center)
                     }
+                }
             }
     }
 

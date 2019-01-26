@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
                                              xmlns:app="http://schemas.android.com/apk/res-auto"
-                                             xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+                                             xmlns:tools="http://schemas.android.com/tools"
+                                             android:layout_width="match_parent"
                                              android:layout_height="match_parent">
 
     <fragment android:layout_width="match_parent"
@@ -23,10 +24,47 @@
 
     <TextView
             tools:text="City Name"
+            android:layout_marginStart="8dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/cityNameTextView"
+            android:textColor="@color/colorAccent"
+            android:textSize="32sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/guideline"/>
+
+    <TextView
+            tools:text="@string/status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/statusTextView"
+            android:textColor="@color/colorPrimary"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="@+id/cityNameTextView"
+            app:layout_constraintTop_toBottomOf="@+id/cityNameTextView"
+            android:layout_marginTop="8dp"/>
+
+    <TextView
+            tools:text="@string/timezone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/timezoneTextView"
+            android:textColor="@color/colorPrimary"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="@+id/cityNameTextView"
+            app:layout_constraintTop_toBottomOf="@+id/statusTextView"
+            android:layout_marginTop="8dp"/>
+
+    <TextView
+            tools:text="Currency"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimary"
+            android:textSize="18sp"
+            android:id="@+id/currencyTextView"
+            android:layout_marginStart="8dp"
+            app:layout_constraintStart_toEndOf="@+id/statusTextView"
+            app:layout_constraintBottom_toBottomOf="@+id/statusTextView"
+            app:layout_constraintTop_toTopOf="@+id/statusTextView"/>
 
 </android.support.constraint.ConstraintLayout>

@@ -7,28 +7,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1e8bec2a-88d4-4556-a7ed-a7e3364d6932" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/client/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/app/src/main/java/com/example/glovochallenge/glovochallenge/data/api/NetworkAPI.kt" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/src/main/java/com/example/glovochallenge/glovochallenge/data/api/NetworkAPI.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/app/src/main/java/com/example/glovochallenge/glovochallenge/data/repository/CityRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/src/main/java/com/example/glovochallenge/glovochallenge/data/repository/CityRepository.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/app/src/main/java/com/example/glovochallenge/glovochallenge/data/repository/CityRepositoryImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/src/main/java/com/example/glovochallenge/glovochallenge/data/repository/CityRepositoryImpl.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/app/src/main/java/com/example/glovochallenge/glovochallenge/data/repository/CountryRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/src/main/java/com/example/glovochallenge/glovochallenge/data/repository/CountryRepository.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/app/src/main/java/com/example/glovochallenge/glovochallenge/data/repository/CountryRepositoryImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/src/main/java/com/example/glovochallenge/glovochallenge/data/repository/CountryRepositoryImpl.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/app/src/main/java/com/example/glovochallenge/glovochallenge/di/DomainModule.kt" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/src/main/java/com/example/glovochallenge/glovochallenge/di/DomainModule.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/app/src/main/java/com/example/glovochallenge/glovochallenge/domain/interactor/CityCodeInteractor.kt" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/src/main/java/com/example/glovochallenge/glovochallenge/domain/interactor/CityCodeInteractor.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/app/src/main/java/com/example/glovochallenge/glovochallenge/domain/interactor/CityCodeInteractorImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/src/main/java/com/example/glovochallenge/glovochallenge/domain/interactor/CityCodeInteractorImpl.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/app/src/main/java/com/example/glovochallenge/glovochallenge/domain/interactor/CityGroupInteractor.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/app/src/main/java/com/example/glovochallenge/glovochallenge/domain/interactor/CityGroupInteractorImpl.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/app/src/main/java/com/example/glovochallenge/glovochallenge/domain/interactor/LocationPermissionInteractor.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/app/src/main/java/com/example/glovochallenge/glovochallenge/domain/interactor/LocationPermissionInteratorImpl.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/app/src/main/java/com/example/glovochallenge/glovochallenge/presentation/citysearch/CitySearchActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/src/main/java/com/example/glovochallenge/glovochallenge/presentation/citysearch/CitySearchActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/app/src/main/java/com/example/glovochallenge/glovochallenge/presentation/citysearch/CitySearchPresenterImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/src/main/java/com/example/glovochallenge/glovochallenge/presentation/citysearch/CitySearchPresenterImpl.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/client/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/app/src/main/java/com/example/glovochallenge/glovochallenge/presentation/main/MapInfoActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/src/main/java/com/example/glovochallenge/glovochallenge/presentation/main/MapInfoActivity.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/app/src/main/java/com/example/glovochallenge/glovochallenge/presentation/main/MapInfoPresenter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/src/main/java/com/example/glovochallenge/glovochallenge/presentation/main/MapInfoPresenter.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/app/src/main/java/com/example/glovochallenge/glovochallenge/presentation/main/MapInfoPresenterImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/src/main/java/com/example/glovochallenge/glovochallenge/presentation/main/MapInfoPresenterImpl.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/app/src/main/java/com/example/glovochallenge/glovochallenge/presentation/main/MapInfoView.kt" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/src/main/java/com/example/glovochallenge/glovochallenge/presentation/main/MapInfoView.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/app/src/main/res/layout/layout_map.xml" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/src/main/res/layout/layout_map.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/buildsystem/dependencies.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/client/buildsystem/dependencies.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/src/main/res/values/colors.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/src/main/res/values/strings.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -58,7 +44,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -80,6 +65,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="AndroidView" />
       <pane id="PackagesPane" />
       <pane id="Scope" />
     </panes>
