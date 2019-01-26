@@ -48,6 +48,10 @@ class CitySearchActivity: Activity() , CitySearchView, CitySearchAdapter.CityIte
         super.onDestroy()
     }
 
+    override fun onBackPressed() {
+        presenter.onBackPressed()
+    }
+
     override fun navigateBackTomapView() {
         setResult(Activity.RESULT_OK)
         finish()

@@ -4,7 +4,7 @@ import com.example.glovochallenge.glovochallenge.data.model.CoordinateEntity
 import com.example.glovochallenge.glovochallenge.data.provider.AppLocationProvider
 import io.reactivex.Single
 
-class LocationInteratorImpl(private val appLocationProvider: AppLocationProvider) : LocationInteractor {
+class LocationInteractorImpl(private val appLocationProvider: AppLocationProvider) : LocationInteractor {
 
     override fun isPermissionGranted() = appLocationProvider.isPermissionGranted()
 

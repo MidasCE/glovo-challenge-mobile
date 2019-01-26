@@ -4,4 +4,6 @@ interface SettingsRepository {
     fun saveSelectCityCode(cityCode : String)
 
     fun getSelectCityCode() : String?
+
+    fun clearSelectedCityCode()
 }

@@ -10,10 +10,10 @@ import com.example.glovochallenge.glovochallenge.domain.model.Country
 import io.reactivex.Single
 
 class CountryGroupInteractorImpl(
-        private val cityRepository: CityRepository,
-        private val countryRepository: CountryRepository,
-        private val countryMapper: Mapper<CountryNetworkModel, Country>,
-        private val cityInfoMapper: Mapper<CityInfoNetworkModel, City>
+    private val cityRepository: CityRepository,
+    private val countryRepository: CountryRepository,
+    private val countryMapper: Mapper<CountryNetworkModel, Country>,
+    private val cityInfoMapper: Mapper<CityInfoNetworkModel, City>
 ) : CountryGroupInteractor {
 
     override fun getCacheCountryWithCityGroup(): Single<HashMap<Country, List<City>>> {
@@ -21,11 +21,13 @@ class CountryGroupInteractorImpl(
             val countryGroupHashMap = HashMap<Country, List<City>>()
             cityRepository.cacheCityList?.let { cityList ->
                 countryList.forEach { country ->
-                    val cityFilterList = cityList.filter { city -> city.countryCode == country.code }
-                    countryGroupHashMap[countryMapper.map(country)] = cityFilterList.map { cityInfoMapper.map(it) }
+                    cityList.filter { city -> city.countryCode == country.code }
+                        .takeIf { it.isNotEmpty() }?.let { filterList ->
+                            countryGroupHashMap[countryMapper.map(country)] = filterList.map { cityInfoMapper.map(it) }
+                        }
                 }
-                countryGroupHashMap
             }
+            countryGroupHashMap
         }
     }
 

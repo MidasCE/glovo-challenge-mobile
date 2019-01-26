@@ -6,12 +6,14 @@ import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.support.v4.app.ActivityCompat
 import android.support.v4.app.FragmentActivity
 import android.support.v4.content.ContextCompat
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
+import android.widget.Button
 import android.widget.TextView
 import com.example.glovochallenge.glovochallenge.R
 import com.example.glovochallenge.glovochallenge.presentation.citysearch.CitySearchActivity
@@ -39,6 +41,7 @@ class MapInfoActivity : FragmentActivity(), MapInfoView, OnMapReadyCallback {
     private lateinit var currencyTextView: TextView
     private lateinit var statusTextView: TextView
     private lateinit var timezoneTextView: TextView
+    private lateinit var selectCityButton: Button
 
     companion object {
         const val REQUEST_CODE_ASK_PERMISSIONS = 123
@@ -57,6 +60,7 @@ class MapInfoActivity : FragmentActivity(), MapInfoView, OnMapReadyCallback {
         currencyTextView = findViewById(R.id.currencyTextView)
         statusTextView = findViewById(R.id.statusTextView)
         timezoneTextView = findViewById(R.id.timezoneTextView)
+        selectCityButton = findViewById(R.id.selectCityButton)
         val mapFragment = supportFragmentManager.findFragmentById(R.id.mapView)
                 as SupportMapFragment
         mapFragment.getMapAsync(this)
@@ -76,6 +80,9 @@ class MapInfoActivity : FragmentActivity(), MapInfoView, OnMapReadyCallback {
             true
         }
         presenter.firstLoad()
+        selectCityButton.setOnClickListener {
+            navigateToCitySearch()
+        }
     }
 
     override fun navigateToPermissionSettings() {
@@ -144,11 +151,18 @@ class MapInfoActivity : FragmentActivity(), MapInfoView, OnMapReadyCallback {
                             .fillColor(
                                 ContextCompat.getColor(this, R.color.`colorฺArea`)
                             )
+                            .strokeColor(
+                                ContextCompat.getColor(this, R.color.`colorฺTransparent`)
+                            )
                     )
                 }
             }
 
         }
+    }
+
+    override fun showMessage(message: String) {
+        Snackbar.make(findViewById(R.id.rootView), message, Snackbar.LENGTH_SHORT).show()
     }
 
     override fun generateMarkerWorkingArea(workingAreaViewModels: List<WorkingAreaViewModel>) {

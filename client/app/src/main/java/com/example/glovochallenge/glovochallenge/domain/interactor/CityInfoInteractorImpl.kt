@@ -27,9 +27,15 @@ class CityInfoInteractorImpl(
             }
         }
 
-    override fun getCityDetail(): Single<City> =
-        cityRepository.getCityDetail(settingsRepository.getSelectCityCode() ?: "").map {
-            cityDetailMapper.map(it)
+    override fun getCityDetail(): Single<City>  {
+        val code = settingsRepository.getSelectCityCode()
+        return if(!code.isNullOrEmpty()) {
+            cityRepository.getCityDetail(code!!).map {
+                cityDetailMapper.map(it)
+            }
+        } else {
+            Single.error(IllegalArgumentException())
         }
+    }
 
 }

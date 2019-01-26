@@ -42,6 +42,11 @@ class CitySearchPresenterImpl(
         citySearchView.navigateBackTomapView()
     }
 
+    override fun onBackPressed() {
+        cityCodeInteractor.clearSelectedCityCode()
+        citySearchView.navigateBackTomapView()
+    }
+
     override fun onActivityDestroy() {
         compositeDisposable.clear()
     }

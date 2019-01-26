@@ -19,7 +19,7 @@ class CityRepositoryImplTest {
     @Mock
     lateinit var networkAPI: NetworkAPI
 
-    private lateinit var cityRepositoryImpl : CityRepositoryImpl
+    private lateinit var cityRepositoryImpl: CityRepositoryImpl
 
     @Before
     fun setUp() {
@@ -28,10 +28,12 @@ class CityRepositoryImplTest {
 
     @Test
     fun `Test call api getCityDetail response`() {
-        val response = Single.just(CityDetailNetworkModel(
-            "code", "name", "currency", "countryCode", false, "timezone",
-            emptyList(), false, "languageCode"
-        ))
+        val response = Single.just(
+            CityDetailNetworkModel(
+                "code", "name", "currency", "countryCode", false, "timezone",
+                emptyList(), false, "languageCode"
+            )
+        )
         whenever(networkAPI.getCityDetail(any())).thenReturn(response)
 
         cityRepositoryImpl.getCityDetail("code").`should equal`(response)
@@ -39,9 +41,11 @@ class CityRepositoryImplTest {
 
     @Test
     fun `Test call api getCityList response`() {
-        val list = listOf(CityInfoNetworkModel(
-            emptyList(), "name", "currency", "countryCode"
-        ))
+        val list = listOf(
+            CityInfoNetworkModel(
+                emptyList(), "code", "name", "countryCode"
+            )
+        )
         val response = Single.just(list)
         whenever(networkAPI.getCityList()).thenReturn(response)
 

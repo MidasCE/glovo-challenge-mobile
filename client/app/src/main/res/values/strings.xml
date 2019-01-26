@@ -5,4 +5,5 @@
     <string name="available">Available</string>
     <string name="timezone">Timezone :</string>
     <string name="currency">Currency :</string>
+    <string name="select_city">Select City</string>
 </resources>

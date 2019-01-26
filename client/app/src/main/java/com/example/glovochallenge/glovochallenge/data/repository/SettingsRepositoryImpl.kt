@@ -23,4 +23,13 @@ class SettingsRepositoryImpl(private val context: Context) : SettingsRepository 
             APP_SETTINGS_FILE, Context.MODE_PRIVATE)
         return sharedPref.getString(CITY_CODE, "")
     }
+
+    override fun clearSelectedCityCode() {
+        val sharedPref = context.getSharedPreferences(
+            APP_SETTINGS_FILE, Context.MODE_PRIVATE)
+        with (sharedPref.edit()) {
+            clear()
+            commit()
+        }
+    }
 }

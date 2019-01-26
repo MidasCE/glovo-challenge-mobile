@@ -9,4 +9,5 @@
     <color name="colorWhitePrimary">#FFFFFF</color>
     <color name="colorฺBlackPrimary">#000000</color>
     <color name="colorฺArea">#8033b5e5</color>
+    <color name="colorฺTransparent">#00000000</color>
 </resources>

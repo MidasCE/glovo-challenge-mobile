@@ -6,4 +6,6 @@ interface CitySearchPresenter {
     fun saveSelectCityCode(cityCode : String)
 
     fun onActivityDestroy()
+
+    fun onBackPressed()
 }

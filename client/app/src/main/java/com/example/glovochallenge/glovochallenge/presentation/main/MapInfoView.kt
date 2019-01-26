@@ -6,6 +6,7 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.LatLngBounds
 
 interface MapInfoView {
+
     fun setMapLocation(latLngBounds: LatLngBounds)
 
     fun zoomMapLocation(latLng: LatLng)
@@ -19,4 +20,6 @@ interface MapInfoView {
     fun navigateToPermissionSettings()
 
     fun navigateToCitySearch()
+
+    fun showMessage(message: String)
 }

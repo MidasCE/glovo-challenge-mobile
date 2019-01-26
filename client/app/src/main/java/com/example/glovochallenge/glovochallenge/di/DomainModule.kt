@@ -68,6 +68,6 @@ class DomainModule {
     @Provides
     @Singleton
     fun provideLocationInteractor(locationProvider: AppLocationProvider): LocationInteractor =
-        LocationInteratorImpl(locationProvider)
+        LocationInteractorImpl(locationProvider)
 
 }

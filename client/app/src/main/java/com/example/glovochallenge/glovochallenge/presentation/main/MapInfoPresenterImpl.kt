@@ -32,20 +32,25 @@ class MapInfoPresenterImpl(
                 .subscribeOn(schedulerFactory.io())
                 .observeOn(schedulerFactory.main())
                 .subscribe({ pair ->
-                    val workingAreaViewModels = pair.first.mapNotNull { workingAreaViewModelMapper.map(it) }
-                    val workingAreaViewModel =
-                        findWorkAreaForLocation(
-                            workingAreaViewModels,
-                            LatLng(pair.second.latitude, pair.second.longitude)
-                        )
-                    if (workingAreaViewModel != null) {
-                        cityCodeInteractor.saveSelectCityCode(workingAreaViewModel.code)
-                        view.setMapLocation(workingAreaViewModel.workingBoundary)
+                    val workingAreaViewModels =
+                        pair.first.mapNotNull { workingAreaViewModelMapper.map(it) }
+                    if (workingAreaViewModels.isNotEmpty()) {
+                        val workingAreaViewModel =
+                            findWorkAreaForLocation(
+                                workingAreaViewModels,
+                                LatLng(pair.second.latitude, pair.second.longitude)
+                            )
+                        if (workingAreaViewModel != null) {
+                            cityCodeInteractor.saveSelectCityCode(workingAreaViewModel.code)
+                            view.setMapLocation(workingAreaViewModel.workingBoundary)
+                        } else {
+                            view.navigateToCitySearch()
+                        }
                     } else {
-                        view.navigateToCitySearch()
+                        view.showMessage("Not found any working area.")
                     }
                 }, {
-                    Log.e("error", "some error", it)
+                    view.showMessage("Something went wrong at our end. Please try later.")
                 })
             compositeDisposable.add(disposable)
         } else {
@@ -96,6 +101,7 @@ class MapInfoPresenterImpl(
                         }
                     }
                 }, {
+                    view.showMessage("Something went wrong at our end. Please try later.")
                 })
         compositeDisposable.add(disposable)
     }
@@ -103,16 +109,13 @@ class MapInfoPresenterImpl(
     override fun onMarkerClick(name: String) {
         cityInfoInteractor.getCachedCityList()
             .takeIf { it.isNotEmpty() }
-            ?.let { list ->
-                list.first {
-                    it.name == name
-                }.let {
-                    val viewModel = workingAreaViewModelMapper.map(it)
-                    if (viewModel != null) {
-                        cityCodeInteractor.saveSelectCityCode(viewModel.code)
-                        loadCityDetail()
-                        view.zoomMapLocation(viewModel.workingBoundary.center)
-                    }
+            ?.firstOrNull {
+                it.name == name
+            }?.let {
+                workingAreaViewModelMapper.map(it)?.let { viewModel ->
+                    cityCodeInteractor.saveSelectCityCode(viewModel.code)
+                    loadCityDetail()
+                    view.zoomMapLocation(viewModel.workingBoundary.center)
                 }
             }
     }
